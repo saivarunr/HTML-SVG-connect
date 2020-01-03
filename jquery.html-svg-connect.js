@@ -164,9 +164,9 @@
       var svgLeft = this.$element.offset().left;
 
       // Get (top, left) coordinates for the two elements.
-      var startCoord = $startElem.offset();
-      var endCoord = $endElem.offset();
-
+      var startCoord = {top:Number.parseFloat($startElem.attr('data-y')),left:Number.parseFloat($startElem.attr('data-x'))};
+      // var endCoord = $endElem.offset();
+      var endCoord = {top:Number.parseFloat($endElem.attr('data-y')),left:Number.parseFloat($endElem.attr('data-x'))};
       // Centre path above/below or left/right of element.
       var centreSX = 0.5, centreSY = 1,
         centreEX = 0.5, centreEY = 0;
