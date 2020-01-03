@@ -118,13 +118,13 @@
     // and not overlapping them).
     determineOrientation: function ($startElem, $endElem) {
       // If first element is lower than the second, swap.
-      if ($startElem.offset().top > $endElem.offset().top) {
+      if ($startElem.offset().top + $(".xcollection-flow").scrollTop() > $endElem.offset().top + $(".xcollection-flow").scrollTop()) {
         var temp = $startElem;
         $startElem = $endElem;
         $endElem = temp;
       }
-      var startBottom = $startElem.offset().top + $startElem.outerHeight();
-      var endTop = $endElem.offset().top;
+      var startBottom = $startElem.offset().top + $(".xcollection-flow").scrollTop() + $startElem.outerHeight();
+      var endTop = $endElem.offset().top + $(".xcollection-flow").scrollTop();
       var verticalGap = endTop - startBottom;
       // If first element is more left than the second, swap.
       if ($startElem.offset().left > $endElem.offset().left) {
@@ -152,7 +152,7 @@
         swap = $startElem.offset().left > $endElem.offset().left;
       } else { // Horizontal
         // If first element is lower than the second.
-        swap = $startElem.offset().top > $endElem.offset().top;
+        swap = $startElem.offset().top + $(".xcollection-flow").scrollTop() > $endElem.offset().top + $(".xcollection-flow").scrollTop();
       }
       if (swap) {
         var temp = $startElem;
@@ -160,7 +160,7 @@
         $endElem = temp;
       }
       // Get (top, left) corner coordinates of the svg container.
-      var svgTop = this.$element.offset().top;
+      var svgTop = this.$element.offset().top + $(".xcollection-flow").scrollTop();
       var svgLeft = this.$element.offset().left;
 
       // Get (top, left) coordinates for the two elements.
