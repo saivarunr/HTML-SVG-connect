@@ -193,8 +193,8 @@
       var stroke = parseFloat($path.attr("stroke-width"));
       // Check if the svg is big enough to draw the path, if not, set height/width.
       if (this.$svg.attr("width") < (Math.max(startX, endX) + stroke)) this.$svg.attr("width", (Math.max(startX, endX) + stroke));
-      if (this.$svg.attr("height") < (Math.max(startY, endY) + stroke)) this.$svg.attr("height", (Math.max(startY, endY) + stroke));
-
+      // if (this.$svg.attr("height") < (Math.max(startY, endY) + stroke)) this.$svg.attr("height", (Math.max(startY, endY) + stroke));
+      this.$svg.attr("height",3000);
       var deltaX = (Math.max(startX, endX) - Math.min(startX, endX)) * 0.15;
       var deltaY = (Math.max(startY, endY) - Math.min(startY, endY)) * 0.15;
       // For further calculations whichever is the shortest distance.
