@@ -289,9 +289,9 @@
 		var args = arguments;
 		if (options === undefined || typeof options === 'object') {
 			// Creates a new plugin instance, for each selected element, and
-			// stores a reference within the element's data
+      // stores a reference within the element's data
+      $.removeData(this, `plugin_${pluginName}`)
 			return this.each(function() {
-        $.removeData(this, `plugin_${pluginName}`)
 				if (!$.data(this, 'plugin_' + pluginName)) {
 					$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
 				}
