@@ -118,22 +118,22 @@
     // and not overlapping them).
     determineOrientation: function ($startElem, $endElem) {
       // If first element is lower than the second, swap.
-      if ($startElem.offset().top + $(".xcollection-flow").scrollTop() > $endElem.offset().top + $(".xcollection-flow").scrollTop()) {
+      if (Number.parseFloat($startElem.attr('data-y')) > Number.parseFloat($endElem.attr('data-y'))) {
         var temp = $startElem;
         $startElem = $endElem;
         $endElem = temp;
       }
-      var startBottom = $startElem.offset().top + $(".xcollection-flow").scrollTop() + $startElem.outerHeight();
-      var endTop = $endElem.offset().top + $(".xcollection-flow").scrollTop();
+      var startBottom = Number.parseFloat($startElem.attr('data-y')) + $startElem.outerHeight();
+      var endTop = Number.parseFloat($endElem.attr('data-y'));
       var verticalGap = endTop - startBottom;
       // If first element is more left than the second, swap.
-      if ($startElem.offset().left > $endElem.offset().left) {
+      if (Number.parseFloat($startElem.attr('data-x')) > Number.parseFloat($endElem.attr('data-x'))) {
         var temp2 = $startElem;
         $startElem = $endElem;
         $endElem = temp2;
       }
-      var startRight = $startElem.offset().left + $startElem.outerWidth();
-      var endLeft = $endElem.offset().left;
+      var startRight = Number.parseFloat($startElem.attr('data-x')) + $startElem.outerWidth();
+      var endLeft = Number.parseFloat($endElem.attr('data-x'));
       var horizontalGap = endLeft - startRight;
       return horizontalGap > verticalGap ? "vertical" : "horizontal";
     },
@@ -149,10 +149,10 @@
       var swap = false;
       if (orientation == "vertical") {
         // If first element is more left than the second.
-        swap = $startElem.offset().left > $endElem.offset().left;
+        swap = Number.parseFloat($startElem.attr('data-x')) > Number.parseFloat($endElem.attr('data-x'));
       } else { // Horizontal
         // If first element is lower than the second.
-        swap = $startElem.offset().top + $(".xcollection-flow").scrollTop() > $endElem.offset().top + $(".xcollection-flow").scrollTop();
+        swap = Number.parseFloat($startElem.attr('data-y')) > Number.parseFloat($endElem.attr('data-y'));
       }
       if (swap) {
         var temp = $startElem;
@@ -160,7 +160,7 @@
         $endElem = temp;
       }
       // Get (top, left) corner coordinates of the svg container.
-      var svgTop = this.$element.offset().top + $(".xcollection-flow").scrollTop();
+      var svgTop = this.$element.offset().top;
       var svgLeft = this.$element.offset().left;
 
       // Get (top, left) coordinates for the two elements.
@@ -291,7 +291,6 @@
 			// Creates a new plugin instance, for each selected element, and
 			// stores a reference within the element's data
 			return this.each(function() {
-        console.info("THIS ELEMENT IS ",this);
         $.removeData(this, `plugin_${pluginName}`)
 				if (!$.data(this, 'plugin_' + pluginName)) {
 					$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
