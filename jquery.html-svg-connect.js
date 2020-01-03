@@ -289,12 +289,13 @@
 		var args = arguments;
 		if (options === undefined || typeof options === 'object') {
 			// Creates a new plugin instance, for each selected element, and
-      // stores a reference within the element's data
-      // $.removeData(this, `plugin_${pluginName}`)
+			// stores a reference within the element's data
 			return this.each(function() {
-				// if (!$.data(this, 'plugin_' + pluginName)) {
+        console.info("THIS ELEMENT IS ",this);
+        $.removeData(this, `plugin_${pluginName}`)
+				if (!$.data(this, 'plugin_' + pluginName)) {
 					$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
-				// }
+				}
 			});
 		} else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
 			// Call a public plugin method (not starting with an underscore) for each 
