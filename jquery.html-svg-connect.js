@@ -45,7 +45,7 @@
       // Draw the paths, and store references to the loaded elements.
       this.loadedPaths = $.map(this.settings.paths, $.proxy(this.connectSetup, this));
       $(window).on("resize", this.throttle(this.reset, 200, this));
-      return this;
+      console.log(this);
     },
 
     // Recalculate paths.
